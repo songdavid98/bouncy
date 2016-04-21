@@ -9,10 +9,18 @@ var frameid = 0;
 var run = function(e) {
     context.clearRect(0, 0, canvas.width, canvas.height);  
     console.log("clear");             
-    for (object in allObjects) {
-	object.move;
-	object.drawRect;
-    };
+    
+    for (var i = 0; i < allObjects.length; i++) {
+	allObjects[i].move();
+	allObjects[i].drawRect();
+    }
+    //for (object in allObjects) {
+	//console.log(object);
+	//move();
+	//drawRect();
+    //};
+    //first.move();
+    //first.drawRect();
     frameid = window.requestAnimationFrame(run);
 };
 
@@ -30,8 +38,8 @@ stopbutton.addEventListener('click', stop);
 var makeBouncers = function() {
     var rectW = 50;
     var rectH = 20;
-    var rectX = 100;
-    var rectY = 50;
+    var rectX = Math.floor((Math.random() * canvas.width));
+    var rectY = Math.floor((Math.random() * canvas.height));
     var xdir = 1;
     var ydir = 1;
 
