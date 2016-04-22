@@ -66,10 +66,21 @@ var makeBouncers = function() {
 	context.arc(posX, posY, radius, 0, 2*Math.PI);
 	context.fill();
     };
+
+    var setSpeed = function(x, y) {
+	xdir = x;
+	ydir = y;
+    };
+
+    var getRadius = function() {
+	return radius;
+    };
     
     return {
 	move: move,
-	drawRect: drawRect
+	drawRect: drawRect,
+	setSpeed: setSpeed,
+	getRadius: getRadius
     };
 };
 
@@ -97,6 +108,7 @@ var clear = function(){
 };
 
 var flock = function() {
+    console.log("flock");
     allObjects.map(function (object) {
 	object.xdir = 1;
 	object.ydir = 1;
