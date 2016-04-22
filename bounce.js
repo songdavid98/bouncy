@@ -104,7 +104,9 @@ var flock = function() {
 };
 
 var filter = function() {
-
+    allObjects.filter(function(object){
+	object.
+    });
 };
 
 var disperse = function() {
@@ -112,7 +114,7 @@ var disperse = function() {
 };
 addbutton.addEventListener('click',addBall);
 clearbutton.addEventListener("click",clear)
-flockbutton.addEventListener("clikc",flock);
+flockbutton.addEventListener("click",flock);
 filterbutton.addEventListener("click",filter);
 dispersebutton.addEventListener("click",disperse);
 
