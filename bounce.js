@@ -4,6 +4,10 @@ var startbutton = document.getElementById("start");
 var stopbutton = document.getElementById("stop");
 var clearbutton = document.getElementById("clear");
 var addbutton = document.getElementById("add");
+var flockbutton = document.getElementById("flock");
+var filterbutton = document.getElementById("filter");
+var dispersebutton = document.getElementById("disperse");
+
 var running = false;
 
 var frameid = 0;
@@ -39,11 +43,11 @@ startbutton.addEventListener('click', start);
 stopbutton.addEventListener('click', stop);
 
 var makeBouncers = function() {
-    var radius = 15;
+    var radius = (Math.random() * 20 +15);
     var posX = Math.floor((Math.random() * (canvas.width-2*radius) + radius));
     var posY = Math.floor((Math.random() * (canvas.height-2*radius) + radius));
-    var xdir = 1;
-    var ydir = 1;
+    var xdir = (Math.random() * 3);
+    var ydir = (Math.random() * 3);
 
     var move = function() {
 	if (posX - radius <= 0 || posX >= canvas.width - radius) {
@@ -92,5 +96,23 @@ var clear = function(){
     allObjects = [first];
 };
 
+var flock = function() {
+    allObjects.map(function (object) {
+	object.xdir = 1;
+	object.ydir = 1;
+    });
+};
+
+var filter = function() {
+
+};
+
+var disperse = function() {
+
+};
 addbutton.addEventListener('click',addBall);
-clearbutton.addEventListener("click",clear);
+clearbutton.addEventListener("click",clear)
+flockbutton.addEventListener("clikc",flock);
+filterbutton.addEventListener("click",filter);
+dispersebutton.addEventListener("click",disperse);
+
