@@ -105,7 +105,7 @@ var flock = function() {
 
 var filter = function() {
     allObjects.filter(function(object){
-	object.
+	return object.getRadius() > 25;
     });
 };
 
