@@ -60,7 +60,7 @@ var makeBouncers = function() {
 	posX += xdir;
 	posY += ydir;
     };
-    
+
     var drawRect = function(e) { 
 	context.beginPath();
 	context.arc(posX, posY, radius, 0, 2*Math.PI);
@@ -115,18 +115,26 @@ var flock = function() {
     });
 };
 
-var filter = function() {
+var filterLarge = function() {
+    //console.log("filter");
     allObjects.filter(function(object){
 	return object.getRadius() > 25;
+    }).map(function(object){
+	object.setSpeed(0,0);
     });
 };
 
 var disperse = function() {
-
+    allObjects.map(function(object){
+	var randX = (Math.random() * 3);
+	var randY = (Math.random() * 3);
+	object.setSpeed(randX,randY);
+    });
 };
+
 addbutton.addEventListener('click',addBall);
 clearbutton.addEventListener("click",clear)
 flockbutton.addEventListener("click",flock);
-filterbutton.addEventListener("click",filter);
+filterbutton.addEventListener("click",filterLarge);
 dispersebutton.addEventListener("click",disperse);
 
