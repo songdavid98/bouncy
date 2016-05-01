@@ -46,8 +46,8 @@ var makeBouncers = function() {
     var radius = (Math.random() * 20 +15);
     var posX = Math.floor((Math.random() * (canvas.width-2*radius) + radius));
     var posY = Math.floor((Math.random() * (canvas.height-2*radius) + radius));
-    var xdir = (Math.random() * 3);
-    var ydir = (Math.random() * 3);
+    var xdir = (Math.random() * 3 - 1);
+    var ydir = (Math.random() * 3 - 1);
 
     var move = function() {
 	if (posX - radius <= 0 || posX >= canvas.width - radius) {
@@ -110,8 +110,7 @@ var clear = function(){
 var flock = function() {
     console.log("flock");
     allObjects.map(function (object) {
-	object.xdir = 1;
-	object.ydir = 1;
+	object.setSpeed(1,1);
     });
 };
 
@@ -126,8 +125,8 @@ var filterLarge = function() {
 
 var disperse = function() {
     allObjects.map(function(object){
-	var randX = (Math.random() * 3);
-	var randY = (Math.random() * 3);
+	var randX = (Math.random() * 3 - 1);
+	var randY = (Math.random() * 3 - 1);
 	object.setSpeed(randX,randY);
     });
 };
