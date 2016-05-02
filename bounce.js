@@ -4,6 +4,7 @@ var startbutton = document.getElementById("start");
 var stopbutton = document.getElementById("stop");
 var clearbutton = document.getElementById("clear");
 var addbutton = document.getElementById("add");
+var removebutton = document.getElementById("remove");
 var flockbutton = document.getElementById("flock");
 var filterbutton = document.getElementById("filter");
 var dispersebutton = document.getElementById("disperse");
@@ -42,12 +43,22 @@ var stop = function() {
 startbutton.addEventListener('click', start);
 stopbutton.addEventListener('click', stop);
 
+var getRandColor = function(){
+    var possibilities = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++){
+        color += possibilities[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 var makeBouncers = function() {
     var radius = (Math.random() * 20 +15);
     var posX = Math.floor((Math.random() * (canvas.width-2*radius) + radius));
     var posY = Math.floor((Math.random() * (canvas.height-2*radius) + radius));
-    var xdir = (Math.random() * 3 - 1);
-    var ydir = (Math.random() * 3 - 1);
+    var xdir = (Math.random() * 6 - 3);
+    var ydir = (Math.random() * 6 - 3);
+    var color = getRandColor();
 
     var move = function() {
 	if (posX - radius <= 0 || posX >= canvas.width - radius) {
@@ -64,6 +75,7 @@ var makeBouncers = function() {
     var drawRect = function(e) { 
 	context.beginPath();
 	context.arc(posX, posY, radius, 0, 2*Math.PI);
+	context.fillStyle = color;
 	context.fill();
     };
 
@@ -100,6 +112,11 @@ var addBall = function(){
     }
 };
 
+var removeBall = function(){
+    stop();
+    allObjects.pop();
+    start();
+};
 
 var clear = function(){
     stop();
@@ -125,13 +142,14 @@ var filterLarge = function() {
 
 var disperse = function() {
     allObjects.map(function(object){
-	var randX = (Math.random() * 3 - 1);
-	var randY = (Math.random() * 3 - 1);
+	var randX = (Math.random() * 6 - 3);
+	var randY = (Math.random() * 6 - 3);
 	object.setSpeed(randX,randY);
     });
 };
 
 addbutton.addEventListener('click',addBall);
+removebutton.addEventListener('click',removeBall);
 clearbutton.addEventListener("click",clear)
 flockbutton.addEventListener("click",flock);
 filterbutton.addEventListener("click",filterLarge);
